@@ -1,0 +1,36 @@
+﻿@model MuseumFormModel
+
+@using (Html.BeginForm("action", "controller", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(m => m.FirstName, "Ім’я:")
+        @Html.TextBoxFor(m => m.FirstName)
+        @Html.ValidationMessageFor(m => m.FirstName, "", new { @style = "color:red" })
+    </div>
+    <div>
+        @Html.LabelFor(m => m.LastName, "Прізвище:")
+        @Html.TextBoxFor(m => m.LastName)
+        @Html.ValidationMessageFor(m => m.LastName)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.FavoriteExhibit, "Улюблений експонат:")
+        @Html.DropDownListFor(m => m.FavoriteExhibit,
+            new SelectList(new[] { "Картина", "Скульптура", "Артефакт" }), "Оберіть")
+        @Html.ValidationMessageFor(m => m.FavoriteExhibit)
+    </div>
+    <div>
+        <label>
+            @Html.CheckBoxFor(m => m.SubscribeNewsletter)
+            Отримувати новини музею
+        </label>
+    </div>
+    <div>
+        <label>Тип відвідування:</label><br/>
+        @Html.RadioButtonFor(m => m.VisitType, "Індивідуальне") Індивідуальне
+        @Html.RadioButtonFor(m => m.VisitType, "Групове") Групове
+        @Html.ValidationMessageFor(m => m.VisitType)
+    </div>
+    <div>
+    <button type="submit">Відправити</button>
+    </div>
+}
